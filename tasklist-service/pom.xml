@@ -18,7 +18,12 @@
 		<license/>
 	</licenses>
 	<developers>
-		<developer/>
+		<developer>
+			<id>markvp</id>
+			<name>Mark Valentino</name>
+			<email>marvalentino@deloitte.com</email>
+			<url>https://github.com/markpanjaitan</url>
+		</developer>
 	</developers>
 	<scm>
 		<connection/>
@@ -33,11 +38,11 @@
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-oauth2-client</artifactId>
+			<artifactId>spring-boot-starter-security</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-security</artifactId>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-data</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -69,6 +74,60 @@
 			<artifactId>spring-security-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+		<dependency>
+			<groupId>org.apache.httpcomponents.client5</groupId>
+			<artifactId>httpclient5</artifactId>
+			<version>5.3.1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.camunda.bpm.model</groupId>
+			<artifactId>camunda-bpmn-model</artifactId>
+			<version>7.21.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.opencsv</groupId>
+			<artifactId>opencsv</artifactId>
+			<version>5.9</version>
+		</dependency>
+<!--		<dependency>-->
+<!--			<groupId>org.springframework.boot</groupId>-->
+<!--			<artifactId>spring-boot-starter-actuator</artifactId>-->
+<!--		</dependency>-->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-oauth2-client</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-oauth2-resource-server</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-oauth2-jose</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.keycloak</groupId>
+			<artifactId>keycloak-spring-security-adapter</artifactId>
+			<version>25.0.3</version>
+		</dependency>
+		<dependency>
+			<groupId>jakarta.validation</groupId>
+			<artifactId>jakarta.validation-api</artifactId>
+			<version>${jakarta-validation.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-validation</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>jakarta.annotation</groupId>
+			<artifactId>jakarta.annotation-api</artifactId>
+		</dependency>
+
 	</dependencies>
 	<dependencyManagement>
 		<dependencies>
@@ -94,6 +153,16 @@
 							<artifactId>lombok</artifactId>
 						</exclude>
 					</excludes>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>com.google.cloud.tools</groupId>
+				<artifactId>jib-maven-plugin</artifactId>
+				<version>3.3.2</version>
+				<configuration>
+					<to>
+						<image>tasklist-service</image>
+					</to>
 				</configuration>
 			</plugin>
 		</plugins>
