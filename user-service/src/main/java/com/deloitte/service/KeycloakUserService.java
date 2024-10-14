@@ -16,5 +16,5 @@ public interface KeycloakUserService {
     void emailVerification(String userId);
     UserResource getUserResource(String userId);
     void updatePassword(String userId);
-    List<UserResDto> getUsers(String authToken);
+    List<UserResDto> getUsers();
 }

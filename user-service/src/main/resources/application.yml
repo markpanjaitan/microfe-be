@@ -27,7 +27,7 @@ keycloak:
   domain: localhost:18080
   adminClientId: admin-cli
   adminClientSecret: RzVdZgsfpcr5boz1V8XowFTROr9leTXd
-  client: jhipster
+#  client: jhipster
   urls:
     auth: http://${keycloak.domain}/auth
     users: http://${keycloak.domain}/auth/admin/realms/${keycloak.realm}/users

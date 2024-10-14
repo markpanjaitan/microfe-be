@@ -23,6 +23,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 import org.springframework.web.client.RestTemplate;
 
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -37,10 +38,12 @@ public class KeycloakUserServiceImpl implements KeycloakUserService{
     private String realm;
     private Keycloak keycloak;
     private final RestTemplate restTemplate;
+    private final TokenService tokenService;
 
-    public KeycloakUserServiceImpl(Keycloak keycloak, RestTemplate restTemplate) {
+    public KeycloakUserServiceImpl(Keycloak keycloak, RestTemplate restTemplate, TokenService tokenService) {
         this.keycloak = keycloak;
         this.restTemplate = restTemplate;
+        this.tokenService = tokenService;
     }
 
     @Override
@@ -94,7 +97,9 @@ public class KeycloakUserServiceImpl implements KeycloakUserService{
         return  getUsersResource().get(userId).toRepresentation();
     }
 
-    public List<UserResDto> getUsers(String authToken) {
+    public List<UserResDto> getUsers() {
+        String authToken = tokenService.getToken();
+
         HttpHeaders headers = new HttpHeaders();
         headers.set("Authorization", "Bearer " + authToken);
 

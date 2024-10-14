@@ -32,15 +32,26 @@ public class KeycloakUserController {
         return keycloakUserService.getUserById(principal.getName());
     }
 
-    @GetMapping
-    public ResponseEntity<List<UserResDto>> getUsers(@RequestHeader("Authorization") String authToken) {
+//    @GetMapping
+//    public ResponseEntity<List<UserResDto>> getUsers(@RequestHeader("Authorization") String authToken) {
+//        try {
+//            // Remove Principal; use the authToken directly
+//            List<UserResDto> users = keycloakUserService.getUsers(authToken.replace("Bearer ", ""));
+//            return ResponseEntity.ok(users);
+//        } catch (Exception e) {
+//            log.error("Error retrieving users", e);
+//            return ResponseEntity.status(500).build(); // Return a 500 error in case of an exception
+//        }
+//    }
+
+    @GetMapping("/all")
+    public ResponseEntity<List<UserResDto>> getUsers() {
         try {
-            // Remove Principal; use the authToken directly
-            List<UserResDto> users = keycloakUserService.getUsers(authToken.replace("Bearer ", ""));
+            List<UserResDto> users = keycloakUserService.getUsers();
             return ResponseEntity.ok(users);
         } catch (Exception e) {
             log.error("Error retrieving users", e);
-            return ResponseEntity.status(500).build(); // Return a 500 error in case of an exception
+            return ResponseEntity.status(500).build();
         }
     }
 
