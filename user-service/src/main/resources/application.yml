@@ -1,0 +1,127 @@
+server:
+  port: 8090
+  servlet:
+    context-path: /api
+api:
+  stripe:
+    key: stripe_key
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+
+spring:
+  profiles:
+    active: dev
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://${keycloak.domain}/auth/realms/${keycloak.realm}
+jwt:
+  auth:
+    converter:
+      resource-id: jhipster
+
+keycloak:
+  realm: camunda-platform
+  domain: localhost:18080
+  adminClientId: admin-cli
+  adminClientSecret: RzVdZgsfpcr5boz1V8XowFTROr9leTXd
+  client: jhipster
+  urls:
+    auth: http://${keycloak.domain}/auth
+    users: http://${keycloak.domain}/auth/admin/realms/${keycloak.realm}/users
+
+#  data:
+#    jpa:
+#      repositories:
+#        bootstrap-mode: deferred
+#  jpa:
+#    open-in-view: false
+#    properties:
+#      hibernate.jdbc.time_zone: UTC
+#      hibernate.timezone.default_storage: NORMALIZE
+#      hibernate.type.preferred_instant_jdbc_type: TIMESTAMP
+#      hibernate.id.new_generator_mappings: true
+#      hibernate.connection.provider_disables_autocommit: true
+#      hibernate.cache.use_second_level_cache: true
+#      hibernate.cache.use_query_cache: false
+#      hibernate.generate_statistics: false
+#      # modify batch size as necessary
+#      hibernate.jdbc.batch_size: 25
+#      hibernate.order_inserts: true
+#      hibernate.order_updates: true
+#      hibernate.query.fail_on_pagination_over_collection_fetch: true
+#      hibernate.query.in_clause_parameter_padding: true
+#    hibernate:
+#      ddl-auto: none
+#      naming:
+#        physical-strategy: org.hibernate.boot.model.naming.CamelCaseToUnderscoresNamingStrategy
+#        implicit-strategy: org.springframework.boot.orm.jpa.hibernate.SpringImplicitNamingStrategy
+#  messages:
+#    basename: i18n/messages
+#  main:
+#    allow-bean-definition-overriding: true
+#  mvc:
+#    problemdetails:
+#      enabled: true
+#  security:
+#    oauth2:
+#      resourceserver:
+#        jwt:
+#          issuer-uri: http://${keycloak.domain}/realms/${keycloak.realm}
+
+#  security:
+#    oauth2:
+#      client:
+#        provider:
+#          oidc:
+#            issuer-uri: http://localhost:18080/auth/realms/camunda-platform
+#        registration:
+#          oidc:
+#            client-id: jhipster
+#            client-secret: Zmf3n904DKollW8oxH7z3nDtPjiSPtnZ
+#            redirect-uri: 'http://localhost:8080/login/oauth2/code/oidc'
+#            scope: openid, profile, roles
+#            authorization-grant-type: authorization_code
+#      resourceserver:
+#        jwt:
+#          jwk-set-uri: http://localhost:18080/auth/realms/camunda-platform/protocol/openid-connect/certs
+#
+#  task:
+#    execution:
+#      thread-name-prefix: microfrontend-be-task-
+#      pool:
+#        core-size: 2
+#        max-size: 50
+#        queue-capacity: 10000
+#    scheduling:
+#      thread-name-prefix: microfrontend-be-scheduling-
+#      pool:
+#        size: 2
+#  thymeleaf:
+#    mode: HTML
+#  output:
+#    ansi:
+#      console-available: true
+
+#springdoc:
+#  show-actuator: true
+
+# Properties to be exposed on the /info management endpoint
+info:
+  # Comma separated list of profiles that will trigger the ribbon to show
+  display-ribbon-on-profiles: 'dev'
+
+# ===================================================================
+# Camunda configuration
+# ===================================================================
+#camunda:
+#  realm: camunda-platform
+#  auth:
+#    token-url: http://localhost:18080/auth/realms/camunda-platform/protocol/openid-connect/token
+#    client-id: jhipster
+#    client-secret: Zmf3n904DKollW8oxH7z3nDtPjiSPtnZ
+#  tasklist-url: http://localhost:8082/v1/tasks
+#  form-url: http://localhost:8082/v1/forms
+#  auth-server-url: http://localhost:18080/auth
